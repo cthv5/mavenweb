@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.cth.mapper.UserMapper">
+    <insert id="insert" parameterType="org.cth.model.CrmUser">
+        insert into t_crm_user(id,age,user_name) values(#{id},#{age},#{acctName})
+    </insert>
+    <!--
+    <select id="findAll" resultType="org.cth.model.CrmUser">
+        select * from t_crm_user
+    </select>
+    -->
+    <select id="findAll" resultMap="findAllMap">
+        select a.user_name,a.age from t_crm_user a
+    </select>
+    <resultMap id="findAllMap" type="org.cth.model.CrmUser">
+        <result property="acctName" column="user_name"/>
+        <result property="age" column="age"/>
+    </resultMap>
+</mapper>
